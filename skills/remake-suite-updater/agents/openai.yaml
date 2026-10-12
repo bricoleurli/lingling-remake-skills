@@ -1,0 +1,4 @@
+interface:
+  display_name: "爆款复刻套件更新"
+  short_description: "更新套件四个技能并保留备份"
+  default_prompt: "使用 $remake-suite-updater 检查并更新套件，保留用户项目。"

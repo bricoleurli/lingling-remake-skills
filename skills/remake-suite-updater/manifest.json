@@ -1,0 +1,13 @@
+{
+  "name": "remake-suite-updater",
+  "version": "0.1.0",
+  "author": "李加炜",
+  "owner": "李加炜",
+  "brand": "灵凌同学",
+  "website": "https://xhs.typoai.xin",
+  "status": "public-trial",
+  "updated_at": "2026-10-11",
+  "maturity_tier": "production",
+  "context_budget_tier": "production",
+  "review_cadence": "每次路由、子技能或模型连接规则变化后"
+}
