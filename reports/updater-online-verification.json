@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "source": "official GitHub stable",
+  "commit": "8087f7d6ca761fa05471f91cc8457501815c9270",
+  "checks": [
+    "online check sees four skills",
+    "online install validates and installs four skills",
+    "online recheck no changes",
+    "rollback restores empty initial installation"
+  ],
+  "global_skills_modified": false
+}
