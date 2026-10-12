@@ -1,0 +1,12 @@
+{
+  "fallback_positive_concepts": ["workbench_lifecycle"],
+  "positive_concepts": {
+    "workbench_lifecycle": {"weight":1,"phrases":["工作台","本地应用","新增产品线","新增玩法","维护玩法","产品线的提示词","build a workbench","add a workflow"]}
+  },
+  "negative_concepts": {
+    "decomposition_only":{"weight":1,"exclusive":true,"phrases":["从这些参考图片拆解","只拆解","分析参考图","拆解画风"]},
+    "daily_generation":{"weight":1,"exclusive":true,"phrases":["按已有玩法生成","帮我生成图片","直接生成一套","运行这个玩法"]},
+    "single_task_override":{"weight":1,"exclusive":true,"phrases":["临时加","这次任务","不要改玩法规则","只改这一次"]},
+    "unrelated":{"weight":1,"exclusive":true,"phrases":["翻译","只要总结"]}
+  }
+}

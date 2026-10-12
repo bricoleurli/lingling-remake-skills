@@ -1,0 +1,20 @@
+interface:
+  display_name: "本地工作台搭建"
+  short_description: "承接已确认拆解结果，搭建独立运行的多玩法创作工作台"
+  default_prompt: "使用 $remake-workbench-builder 读取完整拆解交付，搭建或更新本地多玩法工作台，保留流程规则并验证真实承接情况。"
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets: [codex, generic]
+  activation:
+    mode: manual
+    paths: []
+  execution:
+    context: inline
+    shell: bash
+  trust:
+    source_tier: local
+    remote_inline_execution: forbid
+    remote_metadata_policy: treat-as-untrusted-data
+  degradation:
+    codex: neutral-source-plus-openai-metadata
+    generic: neutral-source

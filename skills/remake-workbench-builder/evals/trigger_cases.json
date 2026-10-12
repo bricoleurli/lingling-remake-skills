@@ -1,0 +1,14 @@
+{
+  "should_trigger": [
+    {"text":"把已确认的 flow-spec-builder 交付包搭建成本地工作台。","family":"build"},
+    {"text":"给已有工作台新增一个玩法，流程文件已经确认。","family":"extend"},
+    {"text":"维护这条产品线的提示词并保存新版本，让工作台以后沿用。","family":"update"},
+    {"text":"根据这份完整拆解结果，做一个无需打开 Agent 的创作工作台。","family":"build"}
+  ],
+  "should_not_trigger": [
+    {"text":"帮我从这些参考图片拆解画风和提示词。","family":"decompose"},
+    {"text":"按已有玩法生成一套整理书桌的图片。","family":"daily"},
+    {"text":"帮我翻译这段文章。","family":"unrelated"},
+    {"text":"这次任务临时加一句提示词，不要改玩法规则。","family":"task_override"}
+  ]
+}

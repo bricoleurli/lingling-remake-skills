@@ -1,0 +1,103 @@
+{
+  "version": "0.2.0",
+  "source_base_parity": true,
+  "files": [
+    {
+      "path": "启动工作台.bat",
+      "sha256": "e53bb7322cf8650506e35a97ab021fb11c81a60974677758d04c33eae898f9d4"
+    },
+    {
+      "path": "server.py",
+      "sha256": "ff0bb389bba791d74f7180c6170424908452130dcdffc203fc70210278a9284b"
+    },
+    {
+      "path": "mint_adapter.py",
+      "sha256": "b7012ad7c533d2a1278f86cba593545fd218ced4322973d5fca027dd2a3e334d"
+    },
+    {
+      "path": "README.md",
+      "sha256": "1d69b9099980edf7385ab74f56881693d56071f4408d52f4d44bd85e95c26b96"
+    },
+    {
+      "path": "presentation.py",
+      "sha256": "3bd9ac763e69db241e71265f6ecd5523436287e30998b558a68bf3dba0908cf4"
+    },
+    {
+      "path": "engine.py",
+      "sha256": "35e014a5cab29812ce617cfa4ea4d376ada45b072db90a268b7921685c04d04e"
+    },
+    {
+      "path": "启动工作台.command",
+      "sha256": "12ef2db94d1054066b4318be38d28790dd4d6ae49818df5318d334d47398bcf8"
+    },
+    {
+      "path": "card_validation.py",
+      "sha256": "ff6e78816baf2165958cb58f2aa12b4c70205d80077f317eac102e4a855c1588"
+    },
+    {
+      "path": "manage.py",
+      "sha256": "95361dc19dece43db1dfe0f38c862b2a5bf984d79caee5b4a71f98a080c8237e"
+    },
+    {
+      "path": "mint-contract.json",
+      "sha256": "d2f71253b7f933a4189aaa12d10bf94560a7258f807b7ab5ce60f5e4ab0761f8"
+    },
+    {
+      "path": "adapter-contract.json",
+      "sha256": "72e258147e92a4b09c9d0f7c53d1585fbb83197ad3e18f167e89bfc37a279a1b"
+    },
+    {
+      "path": "tests/serve_simulation.py",
+      "sha256": "39dbffb6444bf30adc9967c10ecf645d86ea8b92071e34be81d17ba95d219cae"
+    },
+    {
+      "path": "tests/test_workbench.py",
+      "sha256": "bc08862c03afda915471c0455d38fef31894a67ccab96a0c72a4ca4eb0c200b7"
+    },
+    {
+      "path": "tests/test_presentation.py",
+      "sha256": "4b86535c9db9f8156112cd2240facdfb66d5e7ddf63678aee99f09d36ba73d17"
+    },
+    {
+      "path": "tests/test_mint.py",
+      "sha256": "f46c900b13c8f8c3bc28371e6a3dae5fea7974f7352aee130592cbe81d5c5a46"
+    },
+    {
+      "path": "static/index.html",
+      "sha256": "e863bae3373194b072ef37986155da9e994ceb74a87beb00a900d6598c16835c"
+    },
+    {
+      "path": "static/style.css",
+      "sha256": "beea94032628cdd0072c95577f876b4ecd94e7aa4bbe86ffe3fbe8a3545f3c93"
+    },
+    {
+      "path": "static/app.js",
+      "sha256": "b461e7da41be4ce75f4221c8082208b54033f7e947f0538775d40b824c79025a"
+    },
+    {
+      "path": "ui-profiles/knowledge_cards_v1.json",
+      "sha256": "446a03598a4570cccdcb30e89662b5114abb0b5c196642c56a890985ee9d531b"
+    },
+    {
+      "path": "ui-profiles/mint_topic_v1.json",
+      "sha256": "538409a6ceaa06d5100d6e4229e8f79e812e5d66da38043a07a57dfd9552e558"
+    },
+    {
+      "path": "tests/fixtures/copy.json",
+      "sha256": "54b23f6019459a3e73de007390af7e598b25bd2f198073bb909c94f8beaf1eea"
+    },
+    {
+      "path": "tests/fixtures/flow.json",
+      "sha256": "f176b92feb46f4a85ebf0abac83459f41e27f324625c4951af5f44fcb3983ca0"
+    },
+    {
+      "path": "tests/fixtures/pages.json",
+      "sha256": "68a7ee0b600cfd27520abc83a6226ea773860eb94c82b3b3b0a27d3a185d9b47"
+    },
+    {
+      "path": "tests/fixtures/mint/flow.json",
+      "sha256": "a1cf64662dcb00d3a0dd993fab69af0077855a823deabd3fb8482dda78daacc9"
+    }
+  ],
+  "personal_runtime_data_in_base": false
+}

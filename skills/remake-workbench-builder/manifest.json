@@ -1,0 +1,14 @@
+{
+  "name": "remake-workbench-builder",
+  "version": "0.2.1",
+  "owner": "本地工作台产品项目",
+  "updated_at": "2026-10-11",
+  "status": "draft",
+  "maturity_tier": "production",
+  "context_budget_tier": "production",
+  "review_cadence": "每次用户试用反馈或执行适配器变化后",
+  "distribution": "local-review-only",
+  "author": "李加炜",
+  "brand": "灵凌同学",
+  "website": "https://xhs.typoai.xin"
+}

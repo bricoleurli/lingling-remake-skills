@@ -1,0 +1,116 @@
+{
+  "spec_version": "0.4",
+  "id": "mint_action_topic",
+  "inputs": {
+    "texts": [
+      {
+        "id": "topic",
+        "name": "主题",
+        "rows": [
+          1,
+          1
+        ],
+        "required": true,
+        "max_chars": 120,
+        "placeholder": "例如：久坐办公后如何整理工作状态"
+      }
+    ],
+    "image": {
+      "enabled": false
+    }
+  },
+  "fixed": {
+    "hero": "年轻成年女性，深棕近黑的下颌长度短直发，轻薄刘海，棕色大眼睛，温和表情，浅暖肤色，健康自然身材，日系漫画写实比例；主服装为薄荷绿色运动背心、奶油色运动短裤或长裤配薄荷绿侧条，按内容可换薄荷绿家居服。",
+    "account": "",
+    "outro": [
+      "从今天开始",
+      "一次做好一件事",
+      "把方法用起来"
+    ]
+  },
+  "steps": [
+    {
+      "id": "txt_mint_plan",
+      "type": "text",
+      "consume": "once",
+      "reads": [
+        "topic"
+      ],
+      "output": {
+        "id": "plan",
+        "type": "json"
+      },
+      "confirm": true
+    },
+    {
+      "id": "img_cover",
+      "type": "image",
+      "role": "cover",
+      "consume": "once",
+      "reads": [
+        "headline",
+        "hero",
+        "cover_previews",
+        "lines"
+      ],
+      "image_size": "1024x1536",
+      "output": {
+        "id": "cover"
+      }
+    },
+    {
+      "id": "img_pages",
+      "type": "image",
+      "role": "detail",
+      "consume": "grouped(2)",
+      "reads": [
+        "hero",
+        "lines"
+      ],
+      "image_size": "1024x1536",
+      "output": {
+        "id": "pages"
+      },
+      "over": "lines"
+    },
+    {
+      "id": "img_outro",
+      "type": "image",
+      "role": "summary",
+      "consume": "once",
+      "reads": [
+        "hero",
+        "outro",
+        "related",
+        "account"
+      ],
+      "image_size": "1024x1536",
+      "output": {
+        "id": "outro_image"
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "var": "cover",
+      "name": "封面"
+    },
+    {
+      "var": "pages",
+      "name": "正文"
+    },
+    {
+      "var": "outro_image",
+      "name": "尾页结构示意"
+    }
+  ],
+  "presets": [],
+  "handoff": {
+    "adapter": "mint_topic_v1",
+    "source": "tests/set02-text-only-v1/flow.json",
+    "scope": "新增主题自动扩写；三段生图提示词原文保留；角色固定为原默认文字设定，署名留空，尾页标题改为通用收尾。",
+    "verification": "原6张图片为旧版完整文案输入的视觉样张。主题扩写及外部API新链路尚未真实模型验证。",
+    "image_size": "1024x1536",
+    "image_inputs": 0
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "result": "6–14 张知识卡 + 配套发布文案",
+  "asset_title": "固定角色与画风",
+  "asset_note": "沿用已确认的设定，整套保持统一",
+  "asset_summary": "固定角色参考图",
+  "intro": "前两次文字生成完成后，由你确认内容，再开始生图。",
+  "calls": "2 次文字调用 + 每页 1 次生图",
+  "reference_note": "固定角色参考图会作为图片输入单独传入。",
+  "confirmation": "沿用固定角色参考图与已确认规则",
+  "stages": [
+    {
+      "title": "填写本次主题",
+      "actor": "你来填写",
+      "description": "选择这个玩法，填写主题。固定角色参考图随玩法提供，无需每次重新上传。",
+      "prompt_step": null
+    },
+    {
+      "title": "主题扩写与自动分页",
+      "actor": "文字模型 · 第 1 次",
+      "description": "根据主题组织内容，自动分成6–14页：封面 → 正文 → 总结。程序检查分页结构与版式规则。",
+      "prompt_step": "txt_plan"
+    },
+    {
+      "title": "配套发布文案",
+      "actor": "文字模型 · 第 2 次",
+      "description": "根据主题与分页内容生成发布标题、正文、标签。发布文案与图片文字分别准备。",
+      "prompt_step": "txt_copy"
+    },
+    {
+      "title": "确认整套内容",
+      "actor": "你来确认",
+      "description": "检查分页文案和发布稿，可查看每页展开后的生图提示词。确认一次后开始整套生图。",
+      "prompt_step": null
+    },
+    {
+      "title": "逐页生成固定角色知识卡",
+      "actor": "图片模型 · 每页 1 次",
+      "description": "每次传入当前页提示词和同一张角色参考图，按原顺序逐页生成。",
+      "prompt_step": "img_pages"
+    },
+    {
+      "title": "查看、下载与留存",
+      "actor": "工作台自动保存",
+      "description": "查看图片与发布文案，下载整套作品；历史保留任务，单页重画保留已有版本。",
+      "prompt_step": null
+    }
+  ]
+}

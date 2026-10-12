@@ -1,0 +1,14 @@
+{
+  "required_targets": [
+    "openai"
+  ],
+  "required_fields": [
+    "name",
+    "version",
+    "target_native_contract",
+    "target_permission_contract"
+  ],
+  "openai_required_files": [
+    "targets/openai/adapter.json"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "positive_concepts": {
+    "reference": {
+      "weight": 0.45,
+      "phrases": [
+        "参考图片",
+        "参考图",
+        "参考图文",
+        "这套图",
+        "这组图",
+        "这些图片"
+      ]
+    },
+    "workflow": {
+      "weight": 0.55,
+      "phrases": [
+        "复刻",
+        "复用",
+        "提示词",
+        "生成流程",
+        "槽位",
+        "拆解",
+        "还原"
+      ]
+    }
+  },
+  "negative_concepts": {
+    "oneoff": {
+      "weight": 1,
+      "exclusive": true,
+      "phrases": [
+        "只改",
+        "只翻译",
+        "仅总结",
+        "只生成一张",
+        "直接开发网站",
+        "只帮我安装"
+      ]
+    }
+  },
+  "fallback_positive_concepts": [
+    "reference",
+    "workflow"
+  ],
+  "threshold": 0.48
+}

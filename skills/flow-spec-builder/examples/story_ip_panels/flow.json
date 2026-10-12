@@ -1,0 +1,183 @@
+{
+  "spec_version": "0.4",
+  "id": "story_ip_panels",
+  "name": "故事 IP 单格图",
+  "flow_type": "story_ip",
+  "summary": "用户逐行写故事文字，AI 先为每行规划辅助画面（不改文字），再以固定形象为主角逐行出图，最后写发布文案。",
+  "reference": {
+    "note": "虚构示例：小和尚故事绘本账号的一篇（示例为虚构参考案例，未附原图；实际使用时把原图放进 reference/ 并填 file）",
+    "images": [
+      {
+        "note": "第 1 张：小和尚背着小包袱站在山路口回望寺庙，下方写「小和尚第一次下山」"
+      },
+      {
+        "note": "第 2 张：热闹集市一角，小和尚蹲下看地上的小鸟"
+      },
+      {
+        "note": "第 3 张：小和尚把碗里的饭递给小鸟"
+      }
+    ],
+    "title": "小和尚下山记｜温柔的人运气不会太差",
+    "body": "今天的小和尚第一次下山🌿\n在热闹的集市里，他只看见了那只受伤的小鸟。\n愿你也被世界温柔以待。",
+    "tags": [
+      "治愈绘本",
+      "小和尚",
+      "原创故事",
+      "睡前故事"
+    ]
+  },
+  "models": {
+    "image": "gpt-image-2"
+  },
+  "inputs": {
+    "texts": [
+      {
+        "id": "lines",
+        "name": "故事逐行文字",
+        "rows": [
+          1,
+          14
+        ],
+        "required": true,
+        "max_chars": 40,
+        "verbatim": true,
+        "placeholder": "小和尚第一次下山\n他在集市上看见一只受伤的小鸟\n他把自己的斋饭分给了小鸟"
+      }
+    ],
+    "image": {
+      "enabled": false
+    }
+  },
+  "presets": [
+    {
+      "id": "preset_1",
+      "file": "presets/ip_reference.png",
+      "purpose": "故事主角的固定形象（请替换为你自己的角色）"
+    }
+  ],
+  "subject": {
+    "fixed": true,
+    "type": "cartoon",
+    "preserve": [
+      "脸型",
+      "五官画法",
+      "发型/发饰",
+      "配色",
+      "服装",
+      "标志物",
+      "身体比例"
+    ]
+  },
+  "steps": [
+    {
+      "id": "txt_scenes",
+      "name": "规划辅助画面",
+      "type": "text",
+      "consume": "per_item",
+      "over": "lines",
+      "prompt": [
+        "{{img:preset_1}}",
+        "【图1】是故事主角。下面是故事的第 {{index}}/{{total}} 页页面文字：",
+        "「{{item}}」",
+        "",
+        "请为这一页规划画面。注意：页面文字会原样印在图上，你只负责画面，不要改写或复述文字。",
+        "只输出一个 JSON 对象，字段：",
+        "- helper_scene：一句话描述画面（主角在做什么、在哪里、什么氛围）；",
+        "- purpose：这个画面帮助读者理解什么；",
+        "- key_objects：画面中必须出现的 2～4 个关键物体（字符串数组）；",
+        "- avoid：画面中要避免的元素（一句话）。"
+      ],
+      "output": {
+        "id": "scenes",
+        "type": "json",
+        "fields": [
+          "helper_scene",
+          "purpose",
+          "key_objects",
+          "avoid"
+        ]
+      }
+    },
+    {
+      "id": "img_panels",
+      "name": "生成故事单格",
+      "type": "image",
+      "role": "panel",
+      "consume": "per_item",
+      "over": "lines",
+      "image_size": "1024x1536",
+      "design": {
+        "style": "温暖的水彩绘本风：纸张纹理、柔和晕染、暖黄主色调、细而少的线条；主角外观以预置图为准",
+        "relation": "场景叙事：画面是本页文字所描述那一刻的一个镜头，主角在做文字里的动作，表情对应文字里的情绪；具体画面由上一步的画面规划决定。画面占上方约 80%，下方约 20% 留白写字",
+        "varies": "{{item}} 本页文字；{{scenes.current.*}} 画面规划",
+        "avoid": "原作里的寺庙、集市、小鸟、饭碗等具体场景和道具",
+        "origin": "AI 反推"
+      },
+      "prompt": [
+        "{{img:preset_1}}",
+        "【图1】是故事的固定主角（卡通角色）。保持【图1】的脸型、五官画法、发型/发饰、配色、服装、标志物和身体比例，画风统一成本页风格。它的表情、动作、姿势和手里的东西按本页内容重新设计，不要照搬【图1】。",
+        "生成一张竖版 3:4 的故事插画。",
+        "【风格】温暖的水彩绘本风：纸张纹理，柔和晕染，暖黄为主色调，线条细而少。",
+        "【图文关系】画面是本页文字所描述那一刻的一个镜头：主角正在做文字里说的动作，表情对应文字里的情绪。画面占上方约 80%，下方约 20% 留白写字。具体画面按下面的规划：",
+        "画面：{{scenes.current.helper_scene}}",
+        "必须出现：{{scenes.current.key_objects.inline}}",
+        "避免：{{scenes.current.avoid}}",
+        "本页文字写在下方留白处，逐字呈现，不改写、不漏字、不多字：「{{item}}」",
+        "【不要】页码、水印或其他文字。"
+      ],
+      "checks": [
+        "页面文字逐字准确",
+        "主角与【图1】一致"
+      ],
+      "output": {
+        "id": "panels"
+      }
+    },
+    {
+      "id": "txt_copy",
+      "name": "生成发布文案",
+      "type": "text",
+      "consume": "once",
+      "prompt": [
+        "你是小红书运营。下面是一个绘本小故事的全部页面文字：",
+        "{{lines.all}}",
+        "",
+        "请写发布文案：title 不超过 20 个字；body 100～200 字，温暖治愈，结尾引导评论；tags 5～8 个，不带 # 号。",
+        "只输出一个 JSON 对象，格式：{\"title\": \"\", \"body\": \"\", \"tags\": [\"\"]}"
+      ],
+      "output": {
+        "id": "copy",
+        "type": "json",
+        "fields": [
+          "title",
+          "body",
+          "tags"
+        ]
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "var": "panels",
+      "name": "故事图"
+    },
+    {
+      "var": "copy.title",
+      "name": "标题"
+    },
+    {
+      "var": "copy.body",
+      "name": "正文"
+    },
+    {
+      "var": "copy.tags",
+      "name": "标签"
+    }
+  ],
+  "sample_input": {
+    "lines": "小和尚第一次下山\n他在集市上看见一只受伤的小鸟\n他把自己的斋饭分给了小鸟"
+  },
+  "transfer_input": {
+    "lines": "下雨天小和尚没带伞\n一只大狗陪他在屋檐下躲雨\n雨停了天边出现一道彩虹"
+  }
+}

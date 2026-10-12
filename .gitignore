@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+flowkit.env
+settings.json
+data/
+products/
+node_modules/
+*.zip
+*.log

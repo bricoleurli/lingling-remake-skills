@@ -1,0 +1,4 @@
+interface:
+  display_name: "爆款复刻工作室"
+  short_description: "统一入口：拆解、配置生成能力、搭建与扩展工作台"
+  default_prompt: "使用 $remake-studio 按当前项目阶段完成爆款复刻流程。"

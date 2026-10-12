@@ -1,0 +1,34 @@
+{
+  "should_trigger": [
+    {
+      "text": "把这套参考图从拆解做到本地工作台",
+      "family": "end_to_end"
+    },
+    {
+      "text": "继续已有复刻项目，看看该拆解还是搭建",
+      "family": "resume"
+    },
+    {
+      "text": "帮我配置复刻项目的生成能力，没有内置生图",
+      "family": "model_setup"
+    }
+  ],
+  "should_not_trigger": [
+    {
+      "text": "只拆解这套参考图，不做应用",
+      "family": "child_only"
+    },
+    {
+      "text": "只搭建这个已确认的流程",
+      "family": "child_only"
+    },
+    {
+      "text": "画一只猫，单张一次性出图",
+      "family": "unrelated"
+    },
+    {
+      "text": "解释一般API请求语法",
+      "family": "unrelated"
+    }
+  ]
+}

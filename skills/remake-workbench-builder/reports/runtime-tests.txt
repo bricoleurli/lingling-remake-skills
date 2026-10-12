@@ -1,0 +1,23 @@
+test_confirm_boundary_and_reference_transport (test_workbench.WorkbenchTest.test_confirm_boundary_and_reference_transport) ... ok
+test_duplicate_actions_rejected (test_workbench.WorkbenchTest.test_duplicate_actions_rejected) ... ok
+test_export_no_secret_and_order (test_workbench.WorkbenchTest.test_export_no_secret_and_order) ... ok
+test_fail_and_resume_only_unfinished_pages (test_workbench.WorkbenchTest.test_fail_and_resume_only_unfinished_pages) ... ok
+test_failed_redraw_retry_targets_requested_page (test_workbench.WorkbenchTest.test_failed_redraw_retry_targets_requested_page) ... ok
+test_http_source_token_and_media_boundaries (test_workbench.WorkbenchTest.test_http_source_token_and_media_boundaries) ... /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 400: 'Bad Request'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+ok
+test_invalid_model_output_stops_before_images (test_workbench.WorkbenchTest.test_invalid_model_output_stops_before_images) ... ok
+test_missing_connection_no_job_created (test_workbench.WorkbenchTest.test_missing_connection_no_job_created) ... ok
+test_placeholder_ratio_rejected (test_workbench.WorkbenchTest.test_placeholder_ratio_rejected) ... ok
+test_redraw_retains_old_version_and_same_prompt (test_workbench.WorkbenchTest.test_redraw_retains_old_version_and_same_prompt) ... ok
+test_restart_preserves_checkpoint (test_workbench.WorkbenchTest.test_restart_preserves_checkpoint) ... ok
+test_stop_keeps_completed_page (test_workbench.WorkbenchTest.test_stop_keeps_completed_page) ... ok
+test_tampered_product_refused (test_workbench.WorkbenchTest.test_tampered_product_refused) ... ok
+test_two_products_and_version_isolation (test_workbench.WorkbenchTest.test_two_products_and_version_isolation) ... ok
+test_unknown_features_not_silently_ignored (test_workbench.WorkbenchTest.test_unknown_features_not_silently_ignored) ... ok
+test_validator_rejects_text_loss (test_workbench.WorkbenchTest.test_validator_rejects_text_loss) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 9.214s
+
+OK

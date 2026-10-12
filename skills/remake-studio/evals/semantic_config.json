@@ -1,0 +1,33 @@
+{
+  "fallback_positive_concepts": [
+    "studio"
+  ],
+  "positive_concepts": {
+    "studio": {
+      "weight": 1,
+      "phrases": [
+        "从拆解做到",
+        "继续已有复刻项目",
+        "配置复刻项目的生成能力"
+      ]
+    }
+  },
+  "negative_concepts": {
+    "child_only": {
+      "weight": 1,
+      "exclusive": true,
+      "phrases": [
+        "只拆解",
+        "只搭建"
+      ]
+    },
+    "unrelated": {
+      "weight": 1,
+      "exclusive": true,
+      "phrases": [
+        "单张一次性",
+        "一般API"
+      ]
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "spec_version": "0.4",
+  "id": "avatar_pack_watercolor",
+  "name": "水彩手绘头像三件套",
+  "flow_type": "avatar_pack",
+  "summary": "用户上传 1 张人物或宠物照片，生成水彩马克笔手绘头像，再用头像生成手机锁屏壁纸，最后把原图、头像、壁纸拼成一张对比图。",
+  "reference": {
+    "note": "虚构示例：水彩马克笔手绘头像定制笔记（示例为虚构参考案例，未附原图；实际使用时把原图放进 reference/ 并填 file）",
+    "images": [
+      {
+        "note": "第 1 张：三栏对比图，原照片 / 手绘头像 / 锁屏壁纸"
+      },
+      {
+        "note": "第 2 张：手绘头像大图"
+      },
+      {
+        "note": "第 3 张：锁屏壁纸，角色在下半部，上方留空"
+      }
+    ],
+    "title": "把自拍变成水彩手绘头像，也太可爱了吧",
+    "body": "用 AI 把照片画成水彩马克笔风头像🎨\n顺便出了一张同款锁屏壁纸，一整套换上心情都变好了！",
+    "tags": [
+      "手绘头像",
+      "水彩",
+      "头像",
+      "壁纸"
+    ]
+  },
+  "models": {
+    "image": "gpt-image-2"
+  },
+  "inputs": {
+    "texts": [],
+    "image": {
+      "enabled": true,
+      "required": true,
+      "name": "人物或宠物照片",
+      "hint": "正脸、光线清楚、主体完整的照片效果最好"
+    }
+  },
+  "presets": [],
+  "steps": [
+    {
+      "id": "img_avatar",
+      "name": "生成手绘头像",
+      "type": "image",
+      "role": "avatar",
+      "consume": "once",
+      "image_size": "1024x1024",
+      "design": {
+        "style": "水彩加马克笔：马克笔勾轻松轮廓，水彩平涂带晕染和笔触，配色明快，浅色纯净背景",
+        "relation": "没有文字，画面完全由用户照片决定：保留让熟人一眼认出的 2～3 个特征并略微夸张，其余简化；只画头肩，居中，占约 70%",
+        "varies": "{{img:user_image}} 用户照片中的人物或宠物",
+        "avoid": "照片的背景、光线和杂物",
+        "origin": "AI 反推"
+      },
+      "prompt": [
+        "{{img:user_image}}",
+        "【图1】是用户的照片，只参考主体的五官、发型（或毛色花纹）、神态和服装颜色；照片的背景、光线和画质都不要保留。",
+        "把【图1】中的主体画成一张手绘头像，1:1。",
+        "【风格】水彩加马克笔：马克笔勾出轻松的轮廓线，水彩平涂并留有晕染和笔触，配色明快，浅色纯净背景。",
+        "【图文关系】这张图没有文字，画面完全由照片决定：保留让熟人一眼认出的 2～3 个特征并略微夸张，其余细节简化；只画头部和肩部，主体居中，约占画面 70%。",
+        "【不要】文字、水印和照片里的背景杂物。"
+      ],
+      "output": {
+        "id": "avatar"
+      }
+    },
+    {
+      "id": "img_wallpaper",
+      "name": "生成锁屏壁纸",
+      "type": "image",
+      "role": "wallpaper",
+      "consume": "once",
+      "image_size": "1024x1536",
+      "design": {
+        "style": "与头像一致的水彩马克笔手绘（通过【图1】参考头像）",
+        "relation": "画面为锁屏服务：角色在下半部，宽度约 60%；上方 1/3 留干净浅色背景给时间；点缀元素从角色的颜色和神态延伸出来",
+        "varies": "{{img:avatar}} 上一步画好的头像",
+        "avoid": "文字、时间数字",
+        "origin": "AI 反推"
+      },
+      "prompt": [
+        "{{img:avatar}}",
+        "【图1】是刚画好的手绘头像，保持它的画风、角色外观和配色。",
+        "以【图1】的角色为主角，画一张竖版手机锁屏壁纸。",
+        "【风格】与【图1】一致的水彩加马克笔手绘。",
+        "【图文关系】画面为锁屏服务：角色放在下半部分，宽度约占画面 60%；上方 1/3 留出干净的浅色天空或背景，给锁屏时间留位置；从角色的颜色和神态延伸出同色系的水彩花草或云朵作为点缀。",
+        "【不要】文字、水印和时间数字。"
+      ],
+      "output": {
+        "id": "wallpaper"
+      }
+    },
+    {
+      "id": "op_compare",
+      "name": "拼接对比图",
+      "type": "code",
+      "role": "compare",
+      "consume": "once",
+      "op": {
+        "name": "compose",
+        "images": [
+          "user_image",
+          "avatar",
+          "wallpaper"
+        ],
+        "layout": "row",
+        "gap": 24,
+        "background": "#FFFFFF"
+      },
+      "output": {
+        "id": "compare"
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "var": "avatar",
+      "name": "手绘头像"
+    },
+    {
+      "var": "wallpaper",
+      "name": "锁屏壁纸"
+    },
+    {
+      "var": "compare",
+      "name": "对比图"
+    }
+  ],
+  "sample_input": {
+    "user_image": "sample/user.png"
+  },
+  "transfer_input": {
+    "user_image": "sample/user.png"
+  }
+}

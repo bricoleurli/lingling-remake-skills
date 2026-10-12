@@ -1,0 +1,159 @@
+{
+  "spec_version": "0.4",
+  "id": "meme_grid_16",
+  "name": "16 宫格表情包",
+  "flow_type": "meme_grid",
+  "summary": "用户写 1～16 行贴纸文字；不足 16 行时由 AI 补足（原文不动），然后一次生成一张 4×4 共 16 格的表情包合集图。",
+  "reference": {
+    "note": "虚构示例：爆米花团团 16 宫格日常表情包（示例为虚构参考案例，未附原图；实际使用时把原图放进 reference/ 并填 file）",
+    "images": [
+      {
+        "note": "4×4 共 16 格，白底，每格团团一个不同表情，格子下方一行字：早安、收到、摸鱼中、下班！……"
+      }
+    ],
+    "title": "爆米花团团 16 连表情包来啦！",
+    "body": "一次放出 16 个团团表情，聊天斗图够用了～\n想要哪个表情评论区告诉我，下期安排！",
+    "tags": [
+      "表情包",
+      "爆米花团团",
+      "原创IP"
+    ]
+  },
+  "models": {
+    "image": "gpt-image-2"
+  },
+  "inputs": {
+    "texts": [
+      {
+        "id": "lines",
+        "name": "贴纸文字",
+        "rows": [
+          1,
+          16
+        ],
+        "required": true,
+        "max_chars": 8,
+        "verbatim": true,
+        "placeholder": "早安\n收到\n摸鱼中\n下班！"
+      }
+    ],
+    "image": {
+      "enabled": false
+    }
+  },
+  "presets": [
+    {
+      "id": "preset_1",
+      "file": "presets/ip_reference.png",
+      "purpose": "IP 角色参考图（请替换为你自己的角色）"
+    }
+  ],
+  "subject": {
+    "fixed": true,
+    "type": "cartoon",
+    "preserve": [
+      "脸型",
+      "五官画法",
+      "发型/发饰",
+      "配色",
+      "服装",
+      "标志物",
+      "身体比例"
+    ]
+  },
+  "steps": [
+    {
+      "id": "txt_fill_lines",
+      "name": "补全贴纸文字",
+      "type": "text",
+      "consume": "once",
+      "when": "count(lines) < 16",
+      "prompt": [
+        "{{img:preset_1}}",
+        "【图1】是一个表情包角色。我要做一套 16 格的聊天表情包，已经写好了下面 {{lines.count}} 条贴纸文字：",
+        "{{lines.all}}",
+        "",
+        "请结合角色的气质，再补写若干条，使总数正好 16 条（需要补写的条数 = 16 − {{lines.count}}）。",
+        "要求：每条 2～6 个字，是日常聊天高频用语；与已有的条目不重复，情绪覆盖开心、无奈、生气、害羞、疲惫等。",
+        "只输出补写的新条目，每条一行，不要编号，不要重复已有条目。"
+      ],
+      "output": {
+        "id": "extra_lines",
+        "type": "list",
+        "count": "=16-count(lines)",
+        "verbatim": true
+      }
+    },
+    {
+      "id": "op_merge_lines",
+      "name": "合并贴纸文字",
+      "type": "code",
+      "consume": "once",
+      "op": {
+        "name": "merge",
+        "lists": [
+          "lines",
+          "extra_lines"
+        ]
+      },
+      "output": {
+        "id": "all_lines",
+        "type": "list",
+        "count": 16
+      }
+    },
+    {
+      "id": "img_grid",
+      "name": "生成 16 宫格",
+      "type": "image",
+      "role": "grid",
+      "consume": "whole_list",
+      "over": "all_lines",
+      "image_size": "1024x1024",
+      "design": {
+        "style": "Q 版贴纸风：白色背景，4×4 等大格子均匀留白，粗黑描边、平涂上色；角色外观以预置图为准",
+        "relation": "每格一个独立表情包：角色用表情和动作演出该格文字的情绪，16 格动作不重复；角色在格子上部约 70%，文字在下部约 25%",
+        "varies": "{{all_lines[1]}}～{{all_lines[16]}} 十六格文字；每格的表情和动作由文字决定",
+        "avoid": "原作里每格的具体动作",
+        "origin": "AI 反推"
+      },
+      "prompt": [
+        "{{img:preset_1}}",
+        "【图1】是表情包的固定主角（卡通角色）。16 格里都保持【图1】的脸型、五官画法、发型/发饰、配色、服装、标志物和身体比例，画风统一成本图风格。每格的表情、动作、姿势和手里的东西按该格文字重新设计，16 格不重复，不要照搬【图1】。",
+        "生成一张 1:1 的表情包合集图，4 行 × 4 列共 16 格。",
+        "【风格】白色背景，格子大小相同、之间均匀留白；粗黑描边、平涂上色的 Q 版贴纸风。",
+        "【图文关系】每一格都是一个独立的表情包：角色用表情和动作演出该格文字的情绪，16 格的动作不能重复；角色在格子上部，约占 70%，文字在格子下部，约占 25%。",
+        "以下文字逐字呈现，不改写、不漏字、不多字，按从左到右、从上到下的顺序：",
+        "第 1 行：{{all_lines[1]}}｜{{all_lines[2]}}｜{{all_lines[3]}}｜{{all_lines[4]}}",
+        "第 2 行：{{all_lines[5]}}｜{{all_lines[6]}}｜{{all_lines[7]}}｜{{all_lines[8]}}",
+        "第 3 行：{{all_lines[9]}}｜{{all_lines[10]}}｜{{all_lines[11]}}｜{{all_lines[12]}}",
+        "第 4 行：{{all_lines[13]}}｜{{all_lines[14]}}｜{{all_lines[15]}}｜{{all_lines[16]}}",
+        "【不要】编号、水印，以及格内文字以外的任何文字。"
+      ],
+      "checks": [
+        "16 格齐全",
+        "每格文字逐字准确",
+        "角色与【图1】一致"
+      ],
+      "output": {
+        "id": "grid"
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "var": "grid",
+      "name": "16宫格"
+    },
+    {
+      "var": "all_lines",
+      "name": "贴纸文字"
+    }
+  ],
+  "sample_input": {
+    "lines": "早安\n收到\n摸鱼中\n下班！"
+  },
+  "transfer_input": {
+    "lines": "考试加油\n复习不完了\n及格万岁\n放假啦"
+  }
+}

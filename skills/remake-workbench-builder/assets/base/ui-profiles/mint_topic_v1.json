@@ -1,0 +1,54 @@
+{
+  "result": "6 张图解 + 配套发布文案",
+  "asset_title": "固定人物文字设定",
+  "asset_note": "沿用模板的人物描述，无需上传图片",
+  "asset_summary": "固定人物文字设定 · 无参考图",
+  "intro": "一次文字生成完成后，由你确认内容，再开始生图。",
+  "calls": "1 次文字调用 + 6 次生图",
+  "reference_note": "本玩法通过固定文字描述保持人物风格，不传入参考图。",
+  "confirmation": "沿用固定人物文字设定，不传参考图；1024×1536",
+  "stages": [
+    {
+      "title": "填写本次主题",
+      "actor": "你来填写",
+      "description": "只需输入一个主题，人物设定和画风已经固定。",
+      "prompt_step": null
+    },
+    {
+      "title": "主题扩写与整套文案",
+      "actor": "文字模型 · 1 次",
+      "description": "自动准备8项正文、封面标题和3组摘要、尾页6个小主题，以及发布文案；检查数量、编号与字段长度。",
+      "prompt_step": "txt_mint_plan"
+    },
+    {
+      "title": "确认整套内容",
+      "actor": "你来确认",
+      "description": "检查封面、4张双条目正文、尾页与发布稿。确认前不调用生图服务。",
+      "prompt_step": null
+    },
+    {
+      "title": "生成封面",
+      "actor": "图片模型 · 1 次",
+      "description": "纯文字生成封面，1024×1536。",
+      "prompt_step": "img_cover"
+    },
+    {
+      "title": "生成双条目正文",
+      "actor": "图片模型 · 4 次",
+      "description": "每两项内容一页，按1—8顺序生成4张正文；无参考图。",
+      "prompt_step": "img_pages"
+    },
+    {
+      "title": "生成独立尾页",
+      "actor": "图片模型 · 1 次",
+      "description": "生成通用收尾与六个相关主题示意，不冒充历史作品。",
+      "prompt_step": "img_outro"
+    },
+    {
+      "title": "查看、下载与留存",
+      "actor": "工作台自动保存",
+      "description": "下载整套结果；历史保留图片版本，可以续跑或单页重画。",
+      "prompt_step": null
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "spec_version": "0.4",
+  "id": "offline_walkthrough",
+  "name": "离线结构演示（未生图）",
+  "flow_type": "knowledge_card",
+  "summary": "合成示例：仅演示两步提示词与交付结构，未分析真实作品、未调用模型、无真实用户验收。实际玩法需重新分析。",
+  "reference": {
+    "note": "工具测试夹具，没有真实参考图片。",
+    "images": []
+  },
+  "models": {
+    "text": "UNBOUND_TEXT_MODEL",
+    "image": "UNBOUND_IMAGE_MODEL"
+  },
+  "inputs": {
+    "texts": [
+      {
+        "id": "topic",
+        "name": "主题",
+        "rows": [
+          1,
+          1
+        ],
+        "required": true,
+        "max_chars": 100
+      }
+    ],
+    "image": {
+      "enabled": false
+    }
+  },
+  "presets": [],
+  "sample_input": {
+    "topic": "整理桌面"
+  },
+  "steps": [
+    {
+      "id": "txt_copy",
+      "name": "写示例文案",
+      "type": "text",
+      "consume": "once",
+      "reads": [
+        "topic"
+      ],
+      "prompt": [
+        "围绕主题{{topic}}写一句短文案。只返回JSON对象，字段body。"
+      ],
+      "output": {
+        "id": "copy",
+        "type": "json",
+        "fields": [
+          "body"
+        ]
+      }
+    },
+    {
+      "id": "img_card",
+      "name": "画示例卡片",
+      "type": "image",
+      "consume": "once",
+      "reads": [
+        "copy"
+      ],
+      "role": "cover",
+      "image_size": "1024x1536",
+      "design": {
+        "style": "仅为工具演示的简单文字卡",
+        "relation": "文字在中央",
+        "varies": "文字内容",
+        "avoid": "额外文字",
+        "origin": "合成夹具，不是反推结果"
+      },
+      "prompt": [
+        "画一张文字卡。中央逐字呈现{{copy.body}}。不输入图片。"
+      ],
+      "output": {
+        "id": "images"
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "var": "images",
+      "name": "卡片"
+    }
+  ],
+  "handoff": {
+    "input_contract": {
+      "用户输入": "主题；本文件仅为合成结构示例"
+    },
+    "page_rules": {
+      "正常调用": "文字1次＋图片1次，均未执行；不代表真实案例页数"
+    },
+    "model_bindings": {
+      "文字": "待绑定",
+      "图片": "待绑定"
+    },
+    "script_contract": {
+      "实现": "本例无自定义内容处理脚本；casebook仅管理页面和文件，不调用模型",
+      "files": []
+    },
+    "verification": {
+      "范围": "工具测试，未生成图片，未验收",
+      "实际调用次数": 0
+    },
+    "slot_contracts": {
+      "topic": {
+        "source": "用户输入topic",
+        "description": "可替换主题"
+      },
+      "copy.body": {
+        "source": "txt_copy的JSON输出body",
+        "description": "可先由用户修改；示例由测试脚本手写"
+      }
+    },
+    "step_contracts": {
+      "txt_copy": {
+        "executor": "文字模型",
+        "model": "待绑定",
+        "input_sources": [
+          "topic"
+        ],
+        "message_role": "user",
+        "system_prompt": null,
+        "runtime_suffix": null,
+        "output": {
+          "id": "copy",
+          "type": "json",
+          "fields": [
+            "body"
+          ]
+        },
+        "downstream": "img_card",
+        "calls": 1,
+        "image_inputs": [],
+        "status": "离线合成示例，未执行",
+        "retry": "本例不自动重试；实际策略另行明确",
+        "example_prompt_file": "examples/txt_copy.txt"
+      },
+      "img_card": {
+        "executor": "图片模型",
+        "model": "待绑定",
+        "input_sources": [
+          "copy"
+        ],
+        "message_role": "user",
+        "system_prompt": null,
+        "runtime_suffix": null,
+        "output": {
+          "id": "images"
+        },
+        "downstream": "检查与交付",
+        "calls": 1,
+        "image_inputs": [],
+        "status": "离线合成示例，未执行",
+        "retry": "本例不自动重试；实际策略另行明确",
+        "example_prompt_file": "examples/img_card.txt"
+      }
+    }
+  }
+}

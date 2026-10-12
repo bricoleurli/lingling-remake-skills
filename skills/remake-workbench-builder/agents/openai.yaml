@@ -1,0 +1,4 @@
+interface:
+  display_name: "本地工作台搭建"
+  short_description: "把完整拆解结果变成可独立运行、可增加玩法的本地创作工作台"
+  default_prompt: "使用 $remake-workbench-builder 将已确认的流程交付包搭建成本地工作台。"

@@ -1,0 +1,13 @@
+{
+  "name": "flow-spec-builder",
+  "version": "0.5.2-codex.7-draft",
+  "owner": "个人安装维护者；原作者李加炜",
+  "updated_at": "2026-10-11",
+  "review_cadence": "每次变更交互或工具后复核",
+  "status": "local-review-only",
+  "maturity_tier": "production",
+  "context_budget_tier": "production",
+  "author": "李加炜",
+  "brand": "灵凌同学",
+  "website": "https://xhs.typoai.xin"
+}

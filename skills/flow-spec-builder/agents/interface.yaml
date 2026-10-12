@@ -1,0 +1,24 @@
+interface:
+  display_name: "爆款复刻机"
+  short_description: "按八步对话拆解参考图文，交付可复用流程与可视化文件包"
+  default_prompt: "分析这套有序参考图文，按八步流程与用户对话，使用共用审阅模板和casebook工具保存阶段，最终交付完整流程文件包。"
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets:
+    - "codex"
+    - "claude"
+    - "generic"
+  activation:
+    mode: "manual"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "bash"
+  trust:
+    source_tier: "local"
+    remote_metadata_policy: "treat-as-untrusted-data"
+    remote_inline_execution: "forbid"
+  degradation:
+    codex: "neutral-source-plus-openai-metadata"
+    claude: "neutral-source-plus-adapter"
+    generic: "neutral-source"

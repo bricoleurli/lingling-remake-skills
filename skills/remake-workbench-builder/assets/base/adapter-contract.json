@@ -1,0 +1,93 @@
+{
+  "steps": [
+    {
+      "id": "txt_plan",
+      "type": "text",
+      "consume": "once",
+      "reads": [
+        "topic"
+      ],
+      "output": {
+        "id": "pages",
+        "type": "json_list",
+        "count": [
+          6,
+          14
+        ],
+        "fields": [
+          "index",
+          "role",
+          "template_id",
+          "title",
+          "intro",
+          "sections",
+          "footer",
+          "display_text"
+        ],
+        "verbatim": true
+      }
+    },
+    {
+      "id": "txt_copy",
+      "type": "text",
+      "consume": "once",
+      "reads": [
+        "topic",
+        "pages"
+      ],
+      "confirm": true,
+      "output": {
+        "id": "copy",
+        "type": "json",
+        "fields": [
+          "title",
+          "body",
+          "tags"
+        ]
+      }
+    },
+    {
+      "id": "img_pages",
+      "type": "image",
+      "consume": "per_item",
+      "over": "pages",
+      "reads": [
+        "pages",
+        "preset_1"
+      ],
+      "role": "detail",
+      "ref_mode": "fixed",
+      "output": {
+        "id": "images"
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "var": "images",
+      "name": "完整图文按原序"
+    },
+    {
+      "var": "copy.title",
+      "name": "发布标题"
+    },
+    {
+      "var": "copy.body",
+      "name": "发布正文"
+    },
+    {
+      "var": "copy.tags",
+      "name": "标签"
+    }
+  ],
+  "layouts": [
+    "cover",
+    "compare",
+    "principle",
+    "dense",
+    "action",
+    "routine",
+    "cautions",
+    "summary"
+  ]
+}

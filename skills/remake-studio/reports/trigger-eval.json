@@ -1,0 +1,309 @@
+{
+  "threshold": 0.48,
+  "threshold_explanation": "Prompts at or above the threshold are treated as trigger matches. Scores are driven primarily by semantic intent coverage: packaging intent, workflow-to-skill transformation intent, reuse/distribution intent, and eval intent. Explicit exclusions such as summary-only, translation-only, one-off, document-only, or do-not-build directives apply direct penalties and can override otherwise similar wording.",
+  "false_positives": 0,
+  "false_negatives": 0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "bucket_stats": {
+    "should_trigger": {
+      "total": 3,
+      "passed": 3,
+      "pass_rate": 1.0
+    },
+    "should_not_trigger": {
+      "total": 4,
+      "passed": 4,
+      "pass_rate": 1.0
+    },
+    "near_neighbor": {
+      "total": 0,
+      "passed": 0,
+      "pass_rate": null
+    }
+  },
+  "family_stats": {
+    "end_to_end": {
+      "total": 1,
+      "passed": 1,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "pass_rate": 1.0
+    },
+    "resume": {
+      "total": 1,
+      "passed": 1,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "pass_rate": 1.0
+    },
+    "model_setup": {
+      "total": 1,
+      "passed": 1,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "pass_rate": 1.0
+    },
+    "child_only": {
+      "total": 2,
+      "passed": 2,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "pass_rate": 1.0
+    },
+    "unrelated": {
+      "total": 2,
+      "passed": 2,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "pass_rate": 1.0
+    }
+  },
+  "misfires": [],
+  "results": {
+    "should_trigger": [
+      {
+        "prompt": "把这套参考图从拆解做到本地工作台",
+        "family": "end_to_end",
+        "score": 0.92,
+        "predicted_trigger": true,
+        "expected_trigger": true,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "studio"
+          ],
+          "matched_desired_concepts": [
+            "studio"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [],
+          "exclusive_negative_concepts": [],
+          "semantic_coverage": 1.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 0,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {
+              "studio": [
+                "从拆解做到"
+              ]
+            },
+            "negative": {}
+          }
+        }
+      },
+      {
+        "prompt": "继续已有复刻项目，看看该拆解还是搭建",
+        "family": "resume",
+        "score": 0.96,
+        "predicted_trigger": true,
+        "expected_trigger": true,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "studio"
+          ],
+          "matched_desired_concepts": [
+            "studio"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [],
+          "exclusive_negative_concepts": [],
+          "semantic_coverage": 1.0,
+          "support_score": 0,
+          "lexical_support": 0.5,
+          "negative_penalty": 0,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {
+              "studio": [
+                "继续已有复刻项目"
+              ]
+            },
+            "negative": {}
+          }
+        }
+      },
+      {
+        "prompt": "帮我配置复刻项目的生成能力，没有内置生图",
+        "family": "model_setup",
+        "score": 0.92,
+        "predicted_trigger": true,
+        "expected_trigger": true,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "studio"
+          ],
+          "matched_desired_concepts": [
+            "studio"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [],
+          "exclusive_negative_concepts": [],
+          "semantic_coverage": 1.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 0,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {
+              "studio": [
+                "配置复刻项目的生成能力"
+              ]
+            },
+            "negative": {}
+          }
+        }
+      }
+    ],
+    "should_not_trigger": [
+      {
+        "prompt": "只拆解这套参考图，不做应用",
+        "family": "child_only",
+        "score": 0.0,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "studio"
+          ],
+          "matched_desired_concepts": [],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [
+            "child_only"
+          ],
+          "exclusive_negative_concepts": [
+            "child_only"
+          ],
+          "semantic_coverage": 0.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 1,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {},
+            "negative": {
+              "child_only": [
+                "只拆解"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "prompt": "只搭建这个已确认的流程",
+        "family": "child_only",
+        "score": 0.0,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "studio"
+          ],
+          "matched_desired_concepts": [],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [
+            "child_only"
+          ],
+          "exclusive_negative_concepts": [
+            "child_only"
+          ],
+          "semantic_coverage": 0.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 1,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {},
+            "negative": {
+              "child_only": [
+                "只搭建"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "prompt": "画一只猫，单张一次性出图",
+        "family": "unrelated",
+        "score": 0.0,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "studio"
+          ],
+          "matched_desired_concepts": [],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [
+            "unrelated"
+          ],
+          "exclusive_negative_concepts": [
+            "unrelated"
+          ],
+          "semantic_coverage": 0.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 1,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {},
+            "negative": {
+              "unrelated": [
+                "单张一次性"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "prompt": "解释一般API请求语法",
+        "family": "unrelated",
+        "score": 0.0,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "studio"
+          ],
+          "matched_desired_concepts": [],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [
+            "unrelated"
+          ],
+          "exclusive_negative_concepts": [
+            "unrelated"
+          ],
+          "semantic_coverage": 0.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 1,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {},
+            "negative": {
+              "unrelated": [
+                "一般API"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "near_neighbor": []
+  }
+}

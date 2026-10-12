@@ -1,0 +1,26 @@
+{
+  "flow-spec-builder": {
+    "failures": [],
+    "platforms": [
+      "openai",
+      "generic"
+    ],
+    "scope": "metadata packaging only; not client execution"
+  },
+  "remake-workbench-builder": {
+    "failures": [],
+    "platforms": [
+      "openai",
+      "generic"
+    ],
+    "scope": "metadata packaging only; not client execution"
+  },
+  "remake-studio": {
+    "failures": [],
+    "platforms": [
+      "openai",
+      "generic"
+    ],
+    "scope": "metadata packaging only; not client execution"
+  }
+}

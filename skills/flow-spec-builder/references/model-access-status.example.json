@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "capabilities": {
+    "agent_text": "unknown",
+    "agent_vision": "unknown",
+    "agent_image": "unknown",
+    "workbench_text_api": "not_configured",
+    "workbench_image_api": "not_configured"
+  },
+  "selected_routes": {},
+  "provider_docs": [],
+  "credential_location": null,
+  "text_test": "not_tested",
+  "image_test": "not_tested",
+  "user_acceptance": "not_reviewed",
+  "pending": [
+    "identify_provider_and_read_official_docs"
+  ],
+  "user_deferred_setup": false
+}
